@@ -1,17 +1,17 @@
 [
 	{
-		"id": 1,
+		"id": "1",
 		"is_folder": true,
 		"name": "Editor",
 		"child": [
 			{
-				"id": 3,
+				"id": "3",
 				"is_folder": true,
 				"name": "editor old data",
 				"child": []
 			},
 			{
-				"id": 4,
+				"id": "4",
 				"is_folder": false,
 				"name": "python.py",
 				"child": []
@@ -19,18 +19,18 @@
 		]
 	},
 	{
-		"id": 7,
+		"id": "7",
 		"is_folder": true,
 		"name": "Python Editor",
 		"child": [
 			{
-				"id": 8,
+				"id": "8",
 				"is_folder": false,
 				"name": "app.py",
 				"child": []
 			},
 			{
-				"id": 9,
+				"id": "9",
 				"is_folder": false,
 				"name": "test.py",
 				"child": []
@@ -38,19 +38,19 @@
 		]
 	},
 	{
-		"id": 2,
+		"id": "2",
 		"is_folder": false,
 		"name": "app.js",
 		"child": []
 	},
 	{
-		"id": 5,
+		"id": "5",
 		"is_folder": false,
 		"name": "note.js",
 		"child": []
 	},
 	{
-		"id": 6,
+		"id": "6",
 		"is_folder": false,
 		"name": "paper.js",
 		"child": []

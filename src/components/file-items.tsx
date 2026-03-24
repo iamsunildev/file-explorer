@@ -1,4 +1,3 @@
-import {Fragment} from "react/jsx-runtime";
 import {type FilesType} from "../types/fileData";
 import File from "./file";
 import Folder from "./folder";
@@ -8,22 +7,25 @@ interface FileItemsProps {
 }
 
 const FileItems: React.FC<FileItemsProps> = ({fileData}) => {
+	const filesList = fileData.filter((file) => !file.is_folder);
+	const foldersList = fileData.filter((file) => file.is_folder);
+
 	return (
 		<div>
-			{fileData.map((file: FilesType) => {
+			{foldersList.map((file: FilesType) => {
 				return (
-					<Fragment key={file.id}>
-						{file.is_folder ? (
-							<div>
-								<Folder fileData={file} />
-								<FileItems fileData={file.child} />
-							</div>
-						) : (
-							<div className="ml-6">
-								<File fileData={file} />
-							</div>
-						)}
-					</Fragment>
+					<div key={file.id}>
+						<Folder fileData={file} />
+						<FileItems fileData={file.child} />
+					</div>
+				);
+			})}
+
+			{filesList.map((file: FilesType) => {
+				return (
+					<div className="ml-6" key={file.id}>
+						<File fileData={file} />
+					</div>
 				);
 			})}
 		</div>

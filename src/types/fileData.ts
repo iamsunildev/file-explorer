@@ -1,6 +1,6 @@
 
 export interface FilesType {
-    id: number,
+    id: string,
     is_folder: boolean,
     name: string,
     child: FilesType[]

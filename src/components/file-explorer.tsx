@@ -1,12 +1,13 @@
+import {useFileExplorer} from "../context/file-explorer.context";
 import FileItems from "./file-items";
-import FILE_DATA from "../data/fileData.json";
 
 const FileExplorer = () => {
+	const {fileData} = useFileExplorer();
 	return (
 		<div className="p-5">
 			<h2>File Explorer</h2>
 
-			<FileItems fileData={FILE_DATA} />
+			<FileItems fileData={fileData} />
 		</div>
 	);
 };
