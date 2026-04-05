@@ -1,48 +1,37 @@
-import {useFileExplorer} from "../context/file-explorer.context";
 import type {FilesType} from "../types/fileData";
-import {nanoid} from "nanoid";
 
 interface FolderProps {
 	fileData: FilesType;
+	handleExpand: (id: string, state: boolean) => void;
+	onPanelChange: (id: string, state: boolean) => void;
+	isExpanded: boolean;
 }
 
-const Folder: React.FC<FolderProps> = ({fileData}) => {
-	const {addItem} = useFileExplorer();
-	console.log(addItem);
-
-	const addFolder = () => {
-		addItem({
-			id: nanoid(),
-			name: "Testing",
-			child: [],
-			is_folder: true,
-		});
-	};
-
-	const addFile = () => {
-		addItem({
-			id: nanoid(),
-			name: "Testing.js",
-			child: [],
-			is_folder: true,
-		});
+const Folder: React.FC<FolderProps> = ({fileData, handleExpand, onPanelChange, isExpanded}) => {
+	const showCreateFilePanel = (e: any, isFolder: boolean) => {
+		e.stopPropagation();
+		onPanelChange(fileData.id, isFolder);
 	};
 
 	return (
-		<div className="flex gap-1 items-center p-1">
+		<section
+			className="flex gap-1 items-center cursor-pointer"
+			aria-hidden="true"
+			onClick={() => handleExpand(fileData.id, !isExpanded)}>
+			<i className={`fa-solid fa-arrow-${isExpanded ? "down" : "right"}`}></i>
 			<i className="fa-solid fa-folder"></i>
 			<span>{fileData.name}</span>
 			<button
-				onClick={addFolder}
+				onClick={(e) => showCreateFilePanel(e, true)}
 				className="bg-blue-400 hover:bg-blue-600 text-white text-xs font-bold px-3 rounded cursor-pointer">
 				+ Folder
 			</button>
 			<button
-				onClick={addFile}
+				onClick={(e) => showCreateFilePanel(e, false)}
 				className="bg-blue-400 hover:bg-blue-600 text-white text-xs font-bold px-3 rounded cursor-pointer">
 				+ File
 			</button>
-		</div>
+		</section>
 	);
 };
 

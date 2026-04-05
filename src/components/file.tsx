@@ -6,7 +6,7 @@ interface FileProps {
 
 const File: React.FC<FileProps> = ({fileData}) => {
 	return (
-		<div className="flex gap-1 items-center">
+		<div className="flex gap-1 items-center cursor-pointer">
 			<i className="fa-solid fa-file"></i>
 			<span>{fileData.name}</span>
 		</div>
