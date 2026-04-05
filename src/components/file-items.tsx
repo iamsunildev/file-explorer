@@ -1,4 +1,4 @@
-import {Activity, useRef, useState} from "react";
+import {Activity, useState} from "react";
 import {type FilesType} from "../types/fileData";
 import File from "./file";
 import Folder from "./folder";
@@ -77,7 +77,7 @@ const FileItems: React.FC<FileItemsProps> = ({fileData}) => {
 									name="file name"
 									onKeyUp={(e) => createFile(e, file.child)}
 									autoFocus
-									onBlur={(e) => closeInputPanel(e)}
+									onBlur={closeInputPanel}
 								/>
 							</div>
 						)}
