@@ -32,7 +32,7 @@ const FileExplorerContext = createContext<FileExplorerProps>({
 export const useFileExplorer = () => useContext(FileExplorerContext);
 
 export const FileExplorerProvider = ({children}: {children: ReactNode}) => {
-	const [file, setFile] = useState<FilesType[]>(FILE_DATA);
+	const [fileData, setFileData] = useState<FilesType[]>(FILE_DATA);
 	const [showInput, setShowInput] = useState<InputType>({
 		visible: false,
 		isFolder: true,
@@ -53,8 +53,8 @@ export const FileExplorerProvider = ({children}: {children: ReactNode}) => {
 			}
 			return newItems;
 		};
-		const newFile = deleteNodeTraversal(file);
-		setFile(newFile);
+		const newFile = deleteNodeTraversal(fileData);
+		setFileData(newFile);
 	};
 
 	const updateItem = (fileId: string, fileName: string) => {
@@ -69,18 +69,21 @@ export const FileExplorerProvider = ({children}: {children: ReactNode}) => {
 			}
 			return newItems;
 		};
-		const newFile = editNodeTraversal(file);
-		setFile(newFile);
+		const newFile = editNodeTraversal(fileData);
+		setFileData(newFile);
 	};
 
-	const state = {
-		fileData: file,
-		addItem,
-		showInput,
-		setShowInput,
-		deleteItem,
-		updateItem,
-	};
-
-	return <FileExplorerContext.Provider value={state}>{children}</FileExplorerContext.Provider>;
+	return (
+		<FileExplorerContext.Provider
+			value={{
+				fileData,
+				addItem,
+				showInput,
+				setShowInput,
+				deleteItem,
+				updateItem,
+			}}>
+			{children}
+		</FileExplorerContext.Provider>
+	);
 };
